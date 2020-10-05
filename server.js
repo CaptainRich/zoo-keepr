@@ -11,6 +11,7 @@ const express = require('express');
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+//////////////////////////////////////////////////////////////////////////////////////
 // Setup a 'filter query' function
 function filterByQuery( query, animalsArray ) {
 
@@ -59,6 +60,15 @@ function filterByQuery( query, animalsArray ) {
 }
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Function to find by Id.
+function findById( id, animalsArray ) {
+    const result = animalsArray.filter(animal => animal.id === id)[0];
+    return result;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Add the route to the 'animals' data
 app.get( '/api/animals/', (req, res) => {
 
@@ -72,7 +82,24 @@ app.get( '/api/animals/', (req, res) => {
     res.json(results);
 });
 
-// Setup the server to listen on port 3001
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Define a new route, with a specific ID.  Note a parameter route must follow the non-parameter route
+app.get( '/api/animals/:id', (req, res) => {
+    const result = findById( req.params.id, animals );
+
+    if( result ) {
+        res.json(result);
+    }
+    else {
+        res.send( 404 );
+    };
+
+});
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Setup the server to listen on port 3001, if HEROKU didn't set the environment variable.
 app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}.`);
 })
