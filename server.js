@@ -11,6 +11,16 @@ const express = require('express');
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+// Need to intercept data for POST requests and transform it to JSON
+// Parse incoming string or data array.  This method takes incoming PSOT data
+// and converts it to key/value pairings that can be accessed in the request.body object.
+// The nested extend informs the server there could be nested data to deal with.
+app.use( express.urlencoded( { extend: true } ) );
+
+// Parse incoming JSON data. This method takes incoming JSON data and parses it into
+// the request.body object.
+app.use( express.json() );
+
 //////////////////////////////////////////////////////////////////////////////////////
 // Setup a 'filter query' function
 function filterByQuery( query, animalsArray ) {
@@ -96,6 +106,15 @@ app.get( '/api/animals/:id', (req, res) => {
     };
 
 });
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+// Define the 'post' function to store data on the server
+app.post('/api/animals', (req, res) => {
+  // The (request) req.body is where the incoming content will be
+  console.log(req.body);
+  res.json(req.body);
+} );
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////
