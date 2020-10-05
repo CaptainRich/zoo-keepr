@@ -1,6 +1,11 @@
 // The main file the server will run from.
 
 
+// Import the node.js packages we need
+const fs   = require( 'fs' );          // file system
+const path = require( 'path' );        // package dealing with path/directory names
+
+
 // Setup so the 'animals' JSON file can be used
 const {animals} = require( './data/animals' );
 
@@ -12,7 +17,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 // Need to intercept data for POST requests and transform it to JSON
-// Parse incoming string or data array.  This method takes incoming PSOT data
+// Parse incoming string or data array.  This method takes incoming POST data
 // and converts it to key/value pairings that can be accessed in the request.body object.
 // The nested extend informs the server there could be nested data to deal with.
 app.use( express.urlencoded( { extend: true } ) );
@@ -75,7 +80,50 @@ function filterByQuery( query, animalsArray ) {
 function findById( id, animalsArray ) {
     const result = animalsArray.filter(animal => animal.id === id)[0];
     return result;
-}
+};
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Function to create a new Animal for the Zoo.  This function will be executed by the route's
+// POST call-back function.
+function createNewAnimal( body, animalsArray ) {
+    const animal = body;
+
+    animalsArray.push( animal );
+
+    // Now write the updated array to the JSON file
+    fs.writeFileSync( 
+        path.join( __dirname, './data/animals.json' ),
+        JSON.stringify( { animals: animalsArray }, null, 2 )
+    );
+
+    // Return finished data to the POST routine for response
+    return animal;
+};
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Validation of new data, when adding a new animal
+function validateAnimal( animal ) {
+
+    if( !animal.name  ||  typeof  animal.name !== 'string' ) {
+        return false;
+    };
+    
+    if( !animal.species  ||  typeof  animal.species !== 'string' ) {
+        return false;
+    };
+    
+    if( !animal.diet  ||  typeof  animal.diet !== 'string' ) {
+        return false;
+    };
+
+    if( !animal.personalityTraits  ||  !Array.isArray(animal.personalityTraits) ) {
+        return false;
+    };
+
+    return true;
+};
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -112,8 +160,19 @@ app.get( '/api/animals/:id', (req, res) => {
 // Define the 'post' function to store data on the server
 app.post('/api/animals', (req, res) => {
   // The (request) req.body is where the incoming content will be
-  console.log(req.body);
-  res.json(req.body);
+
+  // Set the animal's ID based on what the next index of the array will be.
+  req.body.id = animals.length.toString();
+
+  // Now that we have a new ID, add the animal to the JSON file and the animals array.  First
+  // validate the data, and if problems, send back a '400 error'.
+  if( !validateAnimal( req.body ) ) {
+      res.status(400).send('The animal is not properly formatted.');
+  } else {
+    const animal = createNewAnimal( req.body, animals );
+    //console.log(req.body);
+    res.json(req.body);
+  };
 } );
 
 
