@@ -26,6 +26,10 @@ app.use( express.urlencoded( { extend: true } ) );
 // the request.body object.
 app.use( express.json() );
 
+// Handle any static web pages that may be needed (.css, .js, .img) to properly
+// form the HTML pages.  We don't need a specific server endpoint for these files.
+app.use( express.static( 'public' ) );
+
 //////////////////////////////////////////////////////////////////////////////////////
 // Setup a 'filter query' function
 function filterByQuery( query, animalsArray ) {
@@ -176,8 +180,32 @@ app.post('/api/animals', (req, res) => {
 } );
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Setup the route to the main (starting) HTML page.  All this does is reand and send the HTML file 
+// from the server to the client's browser.
+app.get( '/', (req, res) => {
+    res.sendFile( path.join(__dirname, './public/index.html') );
+});
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Setup the route to the animals page.
+app.get( '/animals', (req, res) => {
+    res.sendFile( path.join( __dirname, './public/animals.html' ) );
+});
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Setup the route to the ZooKeepers page.
+app.get( '/zookeepers', (req, res) => {
+    res.sendFile( path.join( __dirname, './public/zookeepers.html' ) );
+});
+
+
 //////////////////////////////////////////////////////////////////////////////////////////////
 // Setup the server to listen on port 3001, if HEROKU didn't set the environment variable.
+// The 'app.listen' route should always be last in the file.
 app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}.`);
 })
