@@ -1,7 +1,7 @@
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 // Import the other modules needed.
-const { filterByQuery, findById, createNewZookeeper, validateZookeeper } = require('../../lib/animals');
+const { filterByQuery, findById, createNewZookeeper, validateZookeeper } = require('../../lib/zookeepers');
 const { zookeepers } = require('../../data/zookeepers');
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
