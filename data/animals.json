@@ -125,17 +125,6 @@
         "hungry"
       ],
       "id": "12"
-    },
-    {
-      "name": "Butch",
-      "species": "Baboon",
-      "diet": "herbivore",
-      "personalityTraits": [
-        "hungry",
-        "zany",
-        "goofy"
-      ],
-      "id": "13"
     }
   ]
 }
