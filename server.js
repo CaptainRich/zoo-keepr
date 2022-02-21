@@ -1,4 +1,5 @@
 // The main file the server will run from.
+// Richard Ay, October 2020
 
 
 // Import the node.js packages we need
@@ -6,15 +7,15 @@ const fs   = require( 'fs' );          // file system
 const path = require( 'path' );        // package dealing with path/directory names
 
 // Import the 'api' and 'html' routes for this application from our subdirectories
-const apiRoutes = require('./routes/apiRoutes');
+const apiRoutes  = require('./routes/apiRoutes');
 const htmlRoutes = require('./routes/htmlRoutes');
 
 
 // Setup so the 'animals' JSON file can be used
-const {animals} = require( './data/animals' );
+const {animals}  = require( './data/animals' );
 
 // Indicate we need to use 'express'
-const express = require('express');
+const express    = require('express');
 
 // Instantiate the server
 const PORT = process.env.PORT || 3001;
