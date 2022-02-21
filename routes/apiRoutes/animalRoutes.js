@@ -10,7 +10,7 @@ const router = require('express').Router();
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Add the route to the 'animals' data
+// Add the route to the 'animals' data, non-parameter routes must appear first in the source code.
 router.get( '/animals/', (req, res) => {
 
     let results = animals;
