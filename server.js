@@ -25,10 +25,15 @@ const app = express();
 // Parse incoming string or data array.  This method takes incoming POST data
 // and converts it to key/value pairings that can be accessed in the request.body object.
 // The nested extend informs the server there could be nested data to deal with.
+
+// The 'app.use' method mounts a function to the server that all our requests will pass through
+// before getting to the endpoint.  Such (mounted) functions are referred to as middle-ware.
+// The 'express.urlencoded' method takes incoming POST data and converts it to key/value pairs 
+// that can be accessed in the 'req.body' object.
 app.use( express.urlencoded( { extend: true } ) );
 
 // Parse incoming JSON data. This method takes incoming JSON data and parses it into
-// the request.body object.
+// the request.body object.  This is also middle-ware.
 app.use( express.json() );
 
 // Use our routing routines

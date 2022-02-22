@@ -125,6 +125,15 @@
         "hungry"
       ],
       "id": "12"
+    },
+    {
+      "name": "Lefty",
+      "species": "lemur",
+      "diet": "omnivore",
+      "personalityTraits": [
+        "hungry"
+      ],
+      "id": "13"
     }
   ]
 }

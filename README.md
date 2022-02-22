@@ -1,5 +1,4 @@
 # Zoo-Keepr
-# Jest Another RPG (Role Player Game)
 Richard Ay (October 2020, *updated February 2022*)
 
 
@@ -26,6 +25,7 @@ This application is deployed on Heroku, therefore it is NOT installed on the loc
 * Node.js
 * Express
 * Heroku
+* Insomnia Core
 
 ## Deployment Link
 The application is deployed on Heroku, see above usage instructions.

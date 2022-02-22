@@ -42,20 +42,20 @@ router.get( '/animals/:id', (req, res) => {
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Define the 'post' function to store data on the server
 router.post('/animals', (req, res) => {
-  // The (request) req.body is where the incoming content will be
+    // The (request) req.body is where the incoming content will be
 
-  // Set the animal's ID based on what the next index of the array will be.
-  req.body.id = animals.length.toString();
+    // Set the animal's ID based on what the next index of the array will be.
+    req.body.id = animals.length.toString();
 
-  // Now that we have a new ID, add the animal to the JSON file and the animals array.  First
-  // validate the data, and if problems, send back a '400 error'.
-  if( !validateAnimal( req.body ) ) {
-      res.status(400).send('The animal is not properly formatted.');
-  } else {
-    const animal = createNewAnimal( req.body, animals );
-    //console.log(req.body);
-    res.json(req.body);
-  };
-} );
+    // Now that we have a new ID, add the animal to the JSON file and the animals array.  First
+    // validate the data, and if there are problems, send back a '400 error'.
+    if (!validateAnimal(req.body)) {
+        res.status(400).send('The animal is not properly formatted.');
+    } else {
+        const animal = createNewAnimal(req.body, animals);
+        //console.log(req.body);
+        res.json(req.body);
+    };
+});
 
 module.exports = router;
