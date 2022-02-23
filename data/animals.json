@@ -119,19 +119,21 @@
       "id": "11"
     },
     {
-      "name": "Larry",
+      "name": "Lefty",
       "species": "lemur",
+      "diet": "omnivore",
       "personalityTraits": [
         "hungry"
       ],
       "id": "12"
     },
     {
-      "name": "Lefty",
-      "species": "lemur",
-      "diet": "omnivore",
+      "name": "Klutsy",
+      "species": "Koala Bear",
+      "diet": "carnivore",
       "personalityTraits": [
-        "hungry"
+        "hungry",
+        "goofy"
       ],
       "id": "13"
     }

@@ -21,6 +21,9 @@ const express    = require('express');
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+
+//////////////  Middle-Ware Methods ////////////////////////////////////////////////////
+
 // Need to intercept data for POST requests and transform it to JSON
 // Parse incoming string or data array.  This method takes incoming POST data
 // and converts it to key/value pairings that can be accessed in the request.body object.

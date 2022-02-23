@@ -14,7 +14,7 @@ const path = require('path');
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Setup the route to the main (starting) HTML page.  All this does is read and send the HTML file 
-// from the server to the client's browser.
+// from the server (assumed to be in the root directory) to the client's browser.
 router.get( '/', (req, res) => {
     res.sendFile( path.join(__dirname, '../../public/index.html') );
 });

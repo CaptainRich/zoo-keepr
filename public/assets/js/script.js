@@ -1,4 +1,4 @@
-const $animalForm = document.querySelector('#animal-form');
+const $animalForm    = document.querySelector('#animal-form');
 const $zookeeperForm = document.querySelector('#zookeeper-form');
 
 
@@ -7,8 +7,8 @@ const handleAnimalFormSubmit = event => {
   event.preventDefault();
 
   // get animal data and organize it
-  const name = $animalForm.querySelector('[name="animal-name"]').value;
-  const species = $animalForm.querySelector('[name="species"]').value;
+  const name          = $animalForm.querySelector('[name="animal-name"]').value;
+  const species       = $animalForm.querySelector('[name="species"]').value;
   const dietRadioHTML = $animalForm.querySelectorAll('[name="diet"]');
   let diet;
 
@@ -31,13 +31,13 @@ const handleAnimalFormSubmit = event => {
 
   ////////////////////////////////////////////////////////////////////////
   // Send the data to the endPoint.
-  fetch( '/api/animals', {
+  fetch( '/api/animals', {                // the request is coming from the Server, don't need the full path here
     method: 'POST',
     headers: {
-      Accept: 'application/json',
+      Accept: 'application/json',         // this informs that the request is going to be JSON data
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify( animalObject )
+    body: JSON.stringify( animalObject )  // add the stringified JSON data
   })
   .then( response => {
     if( response.ok ) {
