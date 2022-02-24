@@ -25,6 +25,7 @@ This application is deployed on Heroku, therefore it is NOT installed on the loc
 * Node.js
 * Express
 * Heroku
+* JSON
 * Insomnia Core
 
 ## Deployment Link

@@ -1,3 +1,5 @@
+// These functions are on the 'client-side' of the application.
+
 const $animalForm = document.querySelector('#animals-form');
 const $displayArea = document.querySelector('#display-area');
 

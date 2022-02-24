@@ -7,8 +7,8 @@ const fs   = require( 'fs' );          // file system
 const path = require( 'path' );        // package dealing with path/directory names
 
 // Import the 'api' and 'html' routes for this application from our subdirectories
-const apiRoutes  = require('./routes/apiRoutes');
-const htmlRoutes = require('./routes/htmlRoutes');
+const apiRoutes  = require('./routes/apiRoutes');   // this reads the index.js file in /apiroutes
+const htmlRoutes = require('./routes/htmlRoutes');  // this reads the index.js file in /htmlroutes
 
 
 // Setup so the 'animals' JSON file can be used
@@ -39,7 +39,8 @@ app.use( express.urlencoded( { extend: true } ) );
 // the request.body object.  This is also middle-ware.
 app.use( express.json() );
 
-// Use our routing routines
+// Use our routing routines, imported above.  When the client navigates to <host>/api, then the application will 
+// use the router setup in /apiRoutes.  If "/" is the endpoint, then the router will serve back the HTML routes.
 app.use('/api', apiRoutes);
 app.use('/', htmlRoutes);
 
