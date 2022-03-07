@@ -11,7 +11,7 @@ const {
 const { animals } = require("../data/animals");
 
 ////////////////////////////////////////////////////////////////////////
-// Mock the data so we aren't actually writing to the JSON file
+// Mock the file system so we aren't actually writing to the JSON file
 jest.mock('fs');
 
 ////////////////////////////////////////////////////////////////////////
