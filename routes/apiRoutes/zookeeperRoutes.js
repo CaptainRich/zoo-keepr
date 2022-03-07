@@ -44,13 +44,13 @@ router.get( '/zookeepers/:id', (req, res) => {
 router.post('/zookeepers', (req, res) => {
   // The (request) req.body is where the incoming content will be
 
-  // Set the animal's ID based on what the next index of the array will be.
+  // Set the zookeeper's ID based on what the next index of the array will be.
   req.body.id = zookeepers.length.toString();
 
   // Now that we have a new ID, add the zookeepers to the JSON file and the zookeepers array.  First
   // validate the data, and if problems, send back a '400 error'.
   if( !validateZookeeper( req.body ) ) {
-      res.status(400).send('The animal is not properly formatted.');
+      res.status(400).send('The zookeeper is not properly formatted.');
   } else {
     const zookeeper = createNewZookeeper( req.body, zookeepers );
     //console.log(req.body);
@@ -58,4 +58,5 @@ router.post('/zookeepers', (req, res) => {
   };
 } );
 
+///////////////////////////////////////////////////////////////////////////////////////////////
 module.exports = router;

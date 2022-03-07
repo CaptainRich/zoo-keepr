@@ -58,21 +58,21 @@ const handleZookeeperFormSubmit = event => {
   event.preventDefault();
 
   // Get the zookeeper data and organize it
-  const name = $zookeeperForm.querySelector('[name="zookeeper-name"]').value;
-  const age = parseInt($zookeeperForm.querySelector('[name="age"]').value);
+  const name           = $zookeeperForm.querySelector('[name="zookeeper-name"]').value;
+  const age            = parseInt($zookeeperForm.querySelector('[name="age"]').value);
   const favoriteAnimal = $zookeeperForm.querySelector('[name="favorite-animal"]').value;
 
-  const zookeeperObj = { name, age, favoriteAnimal };
-  console.log(zookeeperObj);
+  const zookeeperObj   = { name, age, favoriteAnimal };
+  //console.log(zookeeperObj);
 
   // Send the data to the endpoint
-  fetch('api/zookeepers', {
+  fetch('api/zookeepers', {                 // the request is coming from the Server, don't need the full path here
     method: 'POST',
     headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
+      Accept: 'application/json',           // this informs that the request is going to be JSON data
+      'Content-Type': 'application/json'    
     },
-    body: JSON.stringify(zookeeperObj)
+    body: JSON.stringify(zookeeperObj)     // add the stringified JSON data
   })
     .then(response => {
       if (response.ok) {
@@ -82,9 +82,11 @@ const handleZookeeperFormSubmit = event => {
     })
     .then(postResponse => {
       console.log(postResponse);
-      alert('Thank you for adding a zookeeper!');
+      alert('Thank you for adding a new zookeeper!');
     });
 };
 
+
+//////////////////////////////////////////////////////////////////////////////////
 $animalForm.addEventListener('submit', handleAnimalFormSubmit);
 $zookeeperForm.addEventListener('submit', handleZookeeperFormSubmit);

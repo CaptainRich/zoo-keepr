@@ -62,7 +62,8 @@ const handleGetZookeepersSubmit = event => {
 };
 
 
-
+//////////////////////////////////////////////////////////////////////////////////
+// Add the event listener.
 $zookeeperForm.addEventListener('submit', handleGetZookeepersSubmit);
 
 
